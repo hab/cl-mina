@@ -18,7 +18,7 @@ task :create_extra_paths do
   queue echo_cmd "mkdir -p #{config_path}"
 
   queue 'echo "-----> Create shared paths"'
-  shared_dirs = shared_paths.map { |file| "#{deploy_to}/#{shared_path}/#{file}" }.uniq
+  shared_dirs = shared_paths.reject{|p| p.match(/\./)}.map { |file| "#{deploy_to}/#{shared_path}/#{file}" }.uniq
   cmds = shared_dirs.map do |dir|
     queue echo_cmd %{mkdir -p "#{dir}"}
   end

@@ -6,7 +6,7 @@ task :defaults do
   set_default :forward_agent,   true
   set_default :term_mode,       :nil
   set_default :rails_env,       'staging'
-  set_default :shared_paths,    ['tmp', 'log', 'public/uploads', 'config']
+  set_default :shared_paths,    ['tmp', 'log', 'public/uploads', 'config/database.yml']
   set_default :branch,          'staging'
   set_default :deploy_to,       "/home/#{user}/#{application}/#{deploy_server}"
 
