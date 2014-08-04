@@ -6,13 +6,6 @@ task :setup do
   invoke :create_extra_paths
 end
 
-task :echo_config do
-  queue %{echo #{rails_env}}
-  queue %{echo #{deploy_to}}
-  queue %{echo #{shared_path}}
-  queue %{echo #{shared_paths.first}}
-end
-
 task :create_extra_paths do
   queue 'echo "-----> Create configs path"'
   queue echo_cmd "mkdir -p #{config_path}"

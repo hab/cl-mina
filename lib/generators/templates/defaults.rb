@@ -9,6 +9,7 @@ task :defaults do
   set_default :shared_paths,    ['tmp', 'log', 'public/uploads', 'config/database.yml']
   set_default :branch,          'staging'
   set_default :deploy_to,       "/home/#{user}/#{application}/#{deploy_server}"
+  set_default :log_tail,        50
 
   set_default :sockets_path,    "#{deploy_to}/#{shared_path}/tmp/sockets"
   set_default :pids_path,       "#{deploy_to}/#{shared_path}/tmp/pids"

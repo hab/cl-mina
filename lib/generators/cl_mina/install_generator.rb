@@ -19,6 +19,10 @@ module ClMina
       def copy_defaults
         template "defaults.rb", "config/deploy/defaults.rb"
       end
+
+      def create_staging_environment
+        copy_file "config/environments/production.rb", "config/environments/staging.rb"
+      end
     end
   end
 end

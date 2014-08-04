@@ -1,3 +1,5 @@
+# Checks commit hash of local branch against remote. If local does not match remote, says so and stops execution.
+
 namespace :check do
   desc "Make sure local git is in sync with remote."
   task :revision do
