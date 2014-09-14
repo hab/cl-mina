@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "generator_spec"
 
   spec.add_runtime_dependency "mina"
-  spec.add_runtime_dependency "pg"
   spec.add_runtime_dependency "unicorn"
   spec.add_runtime_dependency "carrier-pigeon"
   spec.add_runtime_dependency "highline"
