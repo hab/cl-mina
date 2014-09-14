@@ -1,4 +1,5 @@
 require 'cl_mina/tasks/check'
+require 'cl_mina/tasks/clouddb'
 require 'cl_mina/tasks/db'
 require 'cl_mina/tasks/irc'
 require 'cl_mina/tasks/log'
