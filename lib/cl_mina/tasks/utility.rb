@@ -1,5 +1,6 @@
 task :setup do
-  invoke :'postgresql:setup'
+  invoke :'postgresql:setup' if setup_postgresql
+  invoke :'clouddb:setup' if setup_clouddb
   invoke :'nginx:setup'
   invoke :'unicorn:setup'
   invoke :'logrotate:setup'

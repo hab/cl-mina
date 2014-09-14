@@ -32,8 +32,15 @@ task :defaults do
   set_default :nginx_log_path,  "#{deploy_to}/#{shared_path}/log/nginx"
   set_default :nginx_server_name, domain || server_ip
 
+  set_default :setup_postgresql, true
   set_default :postgresql_host, "localhost"
   set_default :postgresql_user, application
   set_default :postgresql_database, "#{application}_#{deploy_server}"
   set_default :postgresql_pid,  "/var/run/postgresql/9.1-main.pid"
+
+  set_default :setup_clouddb,   false
+  set_default :clouddb_host,    'localhost'
+  set_default :clouddb_adapter, 'mysql2'
+  set_default :clouddb_database, "#{application}_#{rails_env}"
+  set_default :clouddb_user,    application
 end
