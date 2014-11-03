@@ -40,6 +40,10 @@ namespace :env do
     # will briefly overlap when transitioning to new release during unicorn:restart.
     set :unicorn_workers, 2
 
+    # sidekiq_concurrency
+    # Number of threads created by one sidekiq process
+    set :sidekiq_concurrency, 5
+
     # Set all other configuration using config/deploy/defaults.rb
     invoke :defaults
   end
