@@ -27,6 +27,7 @@ task :defaults do
   set_default :sidekiq_log,     "#{logs_path}/sidekiq.log"
   set_default :sidekiq_pid,     "#{pids_path}/sidekiq.pid"
   set_default :sidekiq_script,  "/etc/init/sidekiq_#{application}_#{deploy_server}.conf"
+  set_default :sidekiq_concurrency, 5
 
   set_default :nginx_config,    "#{nginx_path}/sites-enabled/#{application}_#{deploy_server}"
   set_default :nginx_log_path,  "#{deploy_to}/#{shared_path}/log/nginx"
