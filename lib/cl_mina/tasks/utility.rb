@@ -1,4 +1,5 @@
 task :setup do
+  invoke :create_config_path
   invoke :'postgresql:setup' if setup_postgresql
   invoke :'clouddb:setup' if setup_clouddb
   invoke :'nginx:setup'
@@ -7,10 +8,12 @@ task :setup do
   invoke :create_extra_paths
 end
 
-task :create_extra_paths do
+task :create_config_path do
   queue 'echo "-----> Create configs path"'
   queue echo_cmd "mkdir -p #{config_path}"
+end
 
+task :create_extra_paths do
   queue 'echo "-----> Create shared paths"'
   shared_dirs = shared_paths.reject{|p| p.match(/\./)}.map { |file| "#{deploy_to}/#{shared_path}/#{file}" }.uniq
   cmds = shared_dirs.map do |dir|
