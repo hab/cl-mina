@@ -21,7 +21,7 @@ module ClMina
       end
 
       def create_staging_environment
-        copy_file "config/environments/production.rb", "config/environments/staging.rb"
+        copy_file "#{Rails.root}/config/environments/production.rb", "config/environments/staging.rb"
       end
     end
   end
