@@ -18,7 +18,7 @@ server {
 server {
   listen 80<%= " default_server" if default_host %>;
   server_name <%= domain_name %><%= " #{server_ip}" if default_host %>;
-  root /home/<%= user %>/<%= application %>/<%= deploy_server %>/current/public;
+  root <%= deploy_to %>/current/public;
 
   location ^~ /assets/ {
     gzip_static on;
@@ -26,8 +26,8 @@ server {
     add_header Cache-Control public;
   }
 
-  try_files $uri @unicorn;
-  location @unicorn {
+  try_files $uri @unicorn_<%= "#{application}_#{deploy_server}" %>;
+  location @unicorn_<%= "#{application}_#{deploy_server}" %> {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;

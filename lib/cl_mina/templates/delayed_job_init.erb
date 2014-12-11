@@ -1,0 +1,56 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          delayedjob
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Manage delayed_job server
+# Description:       Start, stop, restart delayed_job server for a specific application.
+### END INIT INFO
+set -e
+
+# Feel free to change any of the following variables for your app:
+TIMEOUT=${TIMEOUT-60}
+APP_ROOT=<%= deploy_to %>/current
+CMD="cd $APP_ROOT; RAILS_ENV=<%= rails_env %> bundle exec script/delayed_job"
+AS_USER=<%= user %>
+set -u
+
+run () {
+  if [ "$(id -un)" = l"$AS_USER" ]; then
+    eval $1
+  else
+    su -c "$1" - $AS_USER
+  fi
+}
+
+start_job() {
+  echo "Starting delayed job"
+  run "$CMD start"
+}
+
+stop_job() {
+  echo "Stopping delayed job"
+  run "$CMD stop"
+}
+
+COMMAND="$1"
+shift
+
+case $COMMAND in
+status)
+    ;;
+start|stop|restart)
+    if [ "$COMMAND" = "stop" ]; then
+        stop_job
+    elif [ "$COMMAND" = "start" ]; then
+        start_job
+    elif  [ "$COMMAND" = "restart" ]; then
+        stop_job
+        sleep 1s
+        start_job
+        exit 0
+    fi
+    ;;
+esac
