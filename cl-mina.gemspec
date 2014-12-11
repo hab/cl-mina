@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "generator_spec"
 
   spec.add_runtime_dependency "mina", "0.3.1"
-  spec.add_runtime_dependency "unicorn", "4.6.3"
+  spec.add_runtime_dependency "unicorn", "4.8.3"
   spec.add_runtime_dependency "carrier-pigeon", "0.7.0"
   spec.add_runtime_dependency "highline"
 end
