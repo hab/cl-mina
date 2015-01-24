@@ -7,7 +7,7 @@ preload_app true
 
 listen "/tmp/unicorn.<%= "#{application}_#{deploy_server}" %>.sock"
 worker_processes <%= unicorn_workers %>
-timeout 30
+timeout 300
 
 before_exec do |server|
   if defined? ActiveRecord::Base
