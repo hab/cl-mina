@@ -11,21 +11,11 @@ namespace :unicorn do
     queue echo_cmd "sudo update-rc.d -f unicorn_#{application}_#{deploy_server} defaults"
   end
 
-  %w[start stop].each do |command|
+  %w[start stop restart].each do |command|
     desc "#{command.capitalize} unicorn"
     task command do
       queue %{echo "-----> #{command.capitalize} Unicorn"}
       queue echo_cmd "/etc/init.d/unicorn_#{application}_#{deploy_server} #{command}"
-    end
-  end
-
-  %w[restart].each do |command|
-    desc "#{command.capitalize} unicorn"
-    task command do
-      queue %{echo "-----> #{command.capitalize} Unicorn"}
-      queue echo_cmd "/etc/init.d/unicorn_#{application}_#{deploy_server} stop"
-      sleep 2
-      queue echo_cmd "/etc/init.d/unicorn_#{application}_#{deploy_server} start"
     end
   end
 end
